@@ -11,6 +11,7 @@ PWA de una sola página para que las familias **acuerden, midan y cumplan** el t
 | Sí hace | No hace |
 |---|---|
 | Genera un acuerdo firmado por padre/madre e hijo | Bloquear aplicaciones |
+| Manual de uso incorporado (pestaña Guía) | Instalarse a escondidas |
 | Define límites diarios y franjas (estudio, sueño, comidas) | Leer estadísticas del sistema Android |
 | Cronómetro en vivo + registro manual por categoría | Rastrear ubicación GPS |
 | Historial de 7 días, racha y puntos | Impedir desinstalación |
@@ -57,6 +58,7 @@ Ver `ROADMAP-NATIVO.md` (sección abajo) para la ruta si algún día se quiere l
 
 ```
 index.html      Aplicación completa (single-file PWA)
+MANUAL.md       Manual de la familia (el mismo texto vive dentro de la app, pestaña Guía)
 README.md       Este archivo
 ```
 
@@ -135,6 +137,10 @@ Riesgo principal: el rechazo en Play Store es común en esta categoría y puede 
 ---
 
 ## Registro de cambios
+
+**v1.1** — 11 de agosto de 2026
+Pestaña **Guía** con el manual de la familia en 13 secciones desplegables e imprimibles.
+Corrección de `og:image` y `og:url` al dominio de despliegue, más `og:image:width/height`.
 
 **v1.0** — 11 de agosto de 2026
 Versión inicial. Acuerdo con doble firma, límites por día, franjas horarias, cronómetro, historial de 7 días, puntos y racha, reporte para WhatsApp, respaldo JSON, PIN de administrador, reloj Colombia (UTC-5).
