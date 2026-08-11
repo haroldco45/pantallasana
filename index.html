@@ -235,6 +235,50 @@ textarea{resize:vertical;min-height:72px;line-height:1.55}
 .mask code{flex:1;background:var(--papel);padding:11px 13px;border-radius:var(--rs);font-family:ui-monospace,monospace;font-size:14px;letter-spacing:.06em}
 .mask button{background:var(--rio);color:#fff;padding:11px 15px;border-radius:var(--rs);font-size:13px;font-weight:600}
 
+/* ---------- Guía / manual ---------- */
+.portada{background:var(--rio);color:#fff;border-radius:var(--r);padding:24px 20px;margin-bottom:14px}
+.portada h2{font-size:24px;color:#fff;line-height:1.15}
+.portada p{font-size:14px;color:#A8CBD0;margin:8px 0 0;line-height:1.6}
+details.acc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:9px;overflow:hidden}
+details.acc>summary{
+  list-style:none;padding:15px 17px;font-weight:600;font-size:15px;
+  display:flex;align-items:center;gap:12px;cursor:pointer;
+}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary .num{
+  width:27px;height:27px;flex:none;border-radius:50%;background:var(--papel);
+  display:grid;place-content:center;font-size:12.5px;font-weight:700;color:var(--rio2);
+  font-variant-numeric:tabular-nums;
+}
+details.acc[open]>summary .num{background:var(--mango);color:var(--tinta)}
+details.acc>summary .cv{margin-left:auto;color:var(--tenue);font-size:13px;transition:transform .2s}
+details.acc[open]>summary .cv{transform:rotate(180deg)}
+.acc-in{padding:2px 17px 18px;font-size:14.5px;line-height:1.68;color:#2C464D}
+.acc-in p{margin:0 0 11px}
+.acc-in p:last-child{margin-bottom:0}
+.acc-in b{color:var(--tinta)}
+.acc-in ul,.acc-in ol{margin:0 0 11px;padding-left:19px}
+.acc-in li{margin-bottom:7px}
+.acc-in li::marker{color:var(--rio2)}
+.paso{display:flex;gap:12px;margin-bottom:13px}
+.paso .n{
+  width:24px;height:24px;flex:none;border-radius:7px;background:var(--rio);color:#fff;
+  display:grid;place-content:center;font-size:12.5px;font-weight:700;margin-top:1px;
+}
+.paso div{flex:1}
+.guion{border-left:3px solid var(--mango);padding:2px 0 2px 14px;margin:0 0 13px}
+.guion p{font-family:'Fraunces',serif;font-style:italic;font-size:14.5px;color:var(--tinta);margin:0 0 8px;line-height:1.55}
+.guion p:last-child{margin:0}
+.tabla{border:1px solid var(--linea);border-radius:var(--rs);overflow:hidden;margin:0 0 12px}
+.tr{display:flex;border-bottom:1px solid var(--linea);font-size:13.5px}
+.tr:last-child{border:none}
+.tr:nth-child(odd){background:var(--papel)}
+.tr .a{flex:0 0 96px;padding:10px 12px;font-weight:600;border-right:1px solid var(--linea)}
+.tr .b{flex:1;padding:10px 12px;color:#41595F}
+.fuente{font-size:11.5px;color:var(--tenue);line-height:1.55;margin-top:10px}
+.nope{color:var(--coral);font-weight:600}
+.sipe{color:#2C7A62;font-weight:600}
+
 /* ---------- Navegación inferior ---------- */
 nav{
   position:fixed;bottom:0;left:0;right:0;z-index:50;
@@ -243,9 +287,9 @@ nav{
   padding-bottom:env(safe-area-inset-bottom);
 }
 .nav{display:flex;max-width:560px;margin:0 auto}
-.nav button{flex:1;padding:10px 2px 11px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--tenue);transition:.15s}
-.nav button .e{font-size:19px;line-height:1}
-.nav button .t{font-size:10px;font-weight:600;letter-spacing:.01em}
+.nav button{flex:1;min-width:0;padding:10px 1px 11px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--tenue);transition:.15s}
+.nav button .e{font-size:18px;line-height:1}
+.nav button .t{font-size:9.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
 .nav button.on{color:var(--rio)}
 .nav button.on .e{transform:translateY(-1px)}
 
@@ -421,6 +465,179 @@ nav{
       <div><label for="fHijo">Firma del hijo</label><input type="text" id="fHijo" placeholder="Nombre"></div>
     </div>
     <button class="btn" onclick="firmar()">Firmar el acuerdo</button>
+  </div>
+</section>
+
+<!-- ================= GUÍA ================= -->
+<section class="vista" id="v-guia">
+  <div class="portada">
+    <h2>Manual de la familia</h2>
+    <p>Trece respuestas cortas. Empieza por la primera y ya puedes usar la app; el resto léelo cuando te haga falta.</p>
+  </div>
+
+  <details class="acc" open>
+    <summary><span class="num">1</span>Arrancar en cinco minutos<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <div class="paso"><span class="n">1</span><div>En <b>Ajustes</b>, escribe el nombre y la edad de tu hijo. Aparece como una ficha arriba de la pantalla.</div></div>
+      <div class="paso"><span class="n">2</span><div>Ve a <b>Acuerdo</b>. Siéntate con él y escojan juntos las reglas. Firman los dos.</div></div>
+      <div class="paso"><span class="n">3</span><div>En <b>Límites</b>, ajusta los minutos de cada día. Los que trae puestos son un punto de partida, no una orden.</div></div>
+      <div class="paso"><span class="n">4</span><div>En <b>Hoy</b>, registra el tiempo con el cronómetro o con los botones de +15, +30 y +1 hora.</div></div>
+      <p>Eso es todo. Lo demás en este manual es para cuando quieras afinar.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">2</span>Lo que hace y lo que no<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>Vale la pena decirlo de frente para que nadie se lleve una sorpresa.</p>
+      <p><span class="nope">No bloquea aplicaciones.</span> No apaga TikTok ni cierra el juego. Ninguna página web puede hacer eso; se necesita una app instalada dentro de Android con permisos especiales.</p>
+      <p><span class="nope">No espía.</span> No lee mensajes, no ve ubicación, no revisa fotos, no se instala a escondidas.</p>
+      <p><span class="sipe">Sí acuerda.</span> Deja por escrito y firmado lo que la familia pactó, con la fecha.</p>
+      <p><span class="sipe">Sí mide.</span> Guarda cuánto tiempo se usó, en qué, y lo compara con lo acordado.</p>
+      <p><span class="sipe">Sí muestra.</span> Convierte esa historia en algo que se puede mirar juntos sin pelear, porque los números los pusieron los dos.</p>
+      <p>El control lo pone la familia. La app solo lleva la cuenta y recuerda el trato.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">3</span>La conversación antes de firmar<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>Esta es la parte que decide si funciona. Un acuerdo que el hijo no ayudó a escribir es un castigo con otro nombre, y se rompe la primera semana.</p>
+      <p>Busca un momento tranquilo, no justo después de un pleito por el celular. Unos veinte minutos bastan.</p>
+      <div class="guion">
+        <p>«Quiero que acordemos algo del celular, pero no quiero decidirlo yo solo. ¿Qué te parece justo?»</p>
+        <p>«¿Cuánto tiempo crees que necesitas al día?»</p>
+        <p>«¿En qué momentos te parece bien guardarlo? Yo pensaba en las comidas y en la noche.»</p>
+        <p>«¿Qué regla quieres que yo también cumpla?»</p>
+      </div>
+      <p>Esa última pregunta cambia todo. Si los adultos revisan el celular en la mesa, ninguna regla se sostiene.</p>
+      <p><b>Anota lo que él proponga aunque no te encante.</b> Puedes negociar el número, pero si sale de él lo va a defender. Hay un espacio abajo del acuerdo para agregar reglas propias.</p>
+      <p>Cuando terminen, marca la casilla de que conversaron. No es un formalismo: la ley colombiana exige que el menor sea escuchado antes de que el adulto autorice, valorando su madurez.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">4</span>Registrar el tiempo<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>Hay dos maneras. Escoge una categoría primero, tocando su cuadro.</p>
+      <p><b>Cronómetro.</b> Toca Iniciar cuando empieza y Detener cuando termina. Es lo más exacto y sirve cuando estás cerca.</p>
+      <p><b>Botones rápidos.</b> +15, +30, +1 hora, u «Otro» para escribir cualquier cantidad. Sirve para registrar al final del día, de memoria.</p>
+      <p><b>Quién registra.</b> Lo ideal es que lo haga el hijo. Suena arriesgado y es justo lo contrario: cuando él anota su propio tiempo, se entera de cuánto usa, que es la mitad del trabajo. Si miente, el problema no lo resuelve una app.</p>
+      <p>Para borrar un registro equivocado, toca la <b>×</b> a la derecha en la lista de abajo.</p>
+      <p>Ojo: <b>Estudio</b> y <b>Mensajes</b> no restan tiempo. Nunca. Hablar con la familia y hacer tareas no debería competir con el rato de juego.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">5</span>Leer el anillo<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>El círculo grande de la pestaña Hoy se llena a medida que pasa el tiempo, y cambia de color solo.</p>
+      <div class="tabla">
+        <div class="tr"><div class="a" style="color:#2C7A62">Verde</div><div class="b">Va bien. Queda buena parte del tiempo acordado.</div></div>
+        <div class="tr"><div class="a" style="color:#A56212">Naranja</div><div class="b">Pasó el 80%. Buen momento para avisar que se acerca el final.</div></div>
+        <div class="tr"><div class="a" style="color:#D9544A">Rojo</div><div class="b">Se pasó del acuerdo. Debajo dice por cuánto.</div></div>
+      </div>
+      <p>Si hay una franja sin pantalla activa, sale una barra azul arriba con el nombre y la hora en que termina.</p>
+      <p>Un consejo: cuando el anillo se ponga rojo, no lo uses para regañar el mismo día. Guárdalo para la revisión del domingo, cuando ya no hay calentura. El anillo es información, no un juez.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">6</span>Límites y franjas<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p><b>Límites</b> son los minutos de cada día. Se mueven con la barra deslizante y se guardan solos. Puedes darle más al viernes y al fin de semana; la app ya viene así.</p>
+      <p><b>Franjas</b> son momentos del día en que el teléfono descansa: el colegio, el almuerzo, la hora de dormir. Vienen tres puestas y puedes cambiarlas o agregar las tuyas.</p>
+      <p>Una franja puede cruzar la medianoche. Si pones de 21:00 a 06:00, la app lo entiende bien.</p>
+      <p>Las franjas <b>no bloquean nada</b>. Muestran el aviso y quedan registradas en el acuerdo. Su fuerza es que ambos las escogieron.</p>
+      <p>Empieza flojo. Un límite que se incumple todos los días deja de significar algo. Es mejor arrancar con un número alcanzable y apretarlo mes a mes.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">7</span>Puntos y racha<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p><b>Puntos:</b> 10 por cada día del último mes que cerró dentro del acuerdo.</p>
+      <p><b>Racha:</b> días seguidos cumpliendo, contando hacia atrás desde hoy.</p>
+      <p>La app no reparte premios. Eso lo pone la familia, y funciona mejor si el premio es tiempo o experiencia, no plata: una hora extra el sábado, escoger la película, salir a comer donde él quiera.</p>
+      <p>Sugerencia: acuerden desde el principio a cuántos puntos corresponde qué. Que el premio sea conocido antes, no una sorpresa después.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">8</span>Historial y reporte semanal<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>La pestaña <b>Historial</b> muestra los últimos siete días. Las barras rojas son los días que se pasaron.</p>
+      <p>Abajo aparece el reparto por categoría. Ahí suele salir la sorpresa: casi siempre hay una sola app que se lleva más de la mitad del tiempo. Esa es la conversación que vale la pena, no el total.</p>
+      <p>El botón de <b>WhatsApp</b> arma un resumen listo para enviar. Sirve para el papá o la mamá que no vive en la casa, para el psicólogo, o para el director de grupo si el colegio hizo el acuerdo.</p>
+      <p>Revísenlo juntos el mismo día cada semana. El domingo por la noche funciona bien.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">9</span>¿Cuánto tiempo es razonable?<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>No hay un número mágico, pero sí hay puntos de referencia de pediatría.</p>
+      <div class="tabla">
+        <div class="tr"><div class="a">0 – 2 años</div><div class="b">Sin pantallas, salvo videollamadas con la familia.</div></div>
+        <div class="tr"><div class="a">2 – 5 años</div><div class="b">Hasta 1 hora al día, contenido bueno y acompañado por un adulto.</div></div>
+        <div class="tr"><div class="a">6 – 12 años</div><div class="b">Entre 1 y 2 horas de uso recreativo, sin contar tareas.</div></div>
+        <div class="tr"><div class="a">13 – 17 años</div><div class="b">2 horas o algo más. A esta edad importa menos el reloj y más enseñar a autorregularse.</div></div>
+      </div>
+      <p>Dos cosas pesan tanto como el número:</p>
+      <ul>
+        <li><b>La hora antes de dormir.</b> Es donde más daño hace la pantalla, porque se come el sueño. Si vas a poner una sola regla, pon esa.</li>
+        <li><b>Qué está haciendo.</b> Una hora creando algo no es una hora de video corto detrás de otro.</li>
+      </ul>
+      <p class="fuente">La Academia Americana de Pediatría actualizó su guía en 2026 para ir más allá de los simples límites de tiempo y concentrarse en la calidad, el contexto y la conversación, y recomienda que cada familia arme su propio plan de medios y que los adultos den ejemplo. La OMS sostiene el máximo de una hora diaria a los 2 años. Consultado en agosto de 2026; ante una duda de salud, pregunta a tu pediatra.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">10</span>Instalar en el teléfono<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>No está en Play Store. Se instala desde el navegador y queda con su ícono como cualquier otra app.</p>
+      <p><b>Android (Chrome):</b> abre la página, toca los tres puntos arriba a la derecha y elige <b>Agregar a la pantalla principal</b>.</p>
+      <p><b>iPhone (Safari):</b> toca el cuadrito con la flecha hacia arriba y elige <b>Añadir a pantalla de inicio</b>. Tiene que ser Safari; en Chrome de iPhone no aparece la opción.</p>
+      <p>Una vez instalada abre sin barra de navegador y funciona sin internet.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">11</span>Respaldo y cambio de teléfono<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>Todo vive en este teléfono y en ningún otro lado. No hay cuenta, no hay nube, no hay recuperación por correo. Eso es bueno para la privacidad y peligroso para el descuido.</p>
+      <p><b>Haz respaldo una vez al mes.</b> En Ajustes, <b>Descargar respaldo</b>: baja un archivo con todo. Guárdalo en el correo o en Drive.</p>
+      <p>Para pasar a otro teléfono: abre la app allá, entra a Ajustes y usa <b>Restaurar respaldo</b> con ese archivo.</p>
+      <p>Se pierde todo si borras los datos del navegador, si desinstalas la app, o si usas modo incógnito. En incógnito nada se guarda.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">12</span>Privacidad y ley<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p>Los datos de un menor tienen protección reforzada en Colombia. El artículo 7 de la Ley 1581 de 2012 prohíbe su tratamiento salvo excepciones, y el Decreto 1377 de 2013 las define: que responda al interés superior del menor, que se respeten sus derechos fundamentales y que se le haya escuchado antes de que su representante legal autorice.</p>
+      <p>Por eso el acuerdo firmado no es un adorno. Es la prueba de esa autorización, con la fecha.</p>
+      <p><b>Nada sale de tu teléfono.</b> Vibras Positivas HM no recibe ni guarda un solo dato de los que registras aquí. No hay servidor al cual mandarlos.</p>
+      <p>El documento del responsable se muestra tapado y solo se destapa con el PIN de administrador, que configuras en Ajustes. Se vuelve a tapar solo a los quince segundos.</p>
+      <p>Si registras a un hijo mayor de doce años, él ya puede ser consultado directamente sobre sus datos. Menor de doce, la autorización es del representante legal.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">13</span>Si algo falla<span class="cv">⌄</span></summary>
+    <div class="acc-in">
+      <p><b>No guarda nada al cerrar.</b> Estás en modo incógnito o el navegador tiene bloqueado el almacenamiento. Abre la app en una pestaña normal.</p>
+      <p><b>La hora no coincide.</b> La app usa siempre la hora de Colombia, sin importar cómo esté configurado el teléfono. Si el reloj de arriba muestra la hora correcta de Caucasia, está bien.</p>
+      <p><b>Se borró todo.</b> Si tienes respaldo, restáuralo desde Ajustes. Si no, no hay forma de recuperarlo: no existe copia en ningún servidor.</p>
+      <p><b>El acuerdo no deja firmar.</b> Faltan tres reglas marcadas, la casilla de que conversaron, o alguno de los dos nombres.</p>
+      <p><b>Se firmó de nuevo.</b> Cada hijo tiene un solo acuerdo vigente. Al firmar otra vez, el anterior se reemplaza.</p>
+      <p>Soporte: <b>haroldco45@gmail.com</b> · <b>311 770 0431</b> · Vibras Positivas HM, Caucasia.</p>
+    </div>
+  </details>
+
+  <button class="btn ghost no-print" onclick="abrirTodo()">Abrir todo e imprimir</button>
+  <div class="creditos">
+    <b>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</b>
   </div>
 </section>
 
@@ -620,8 +837,13 @@ const TABS = [
   {k:'limites',   e:'⏱️', t:'Límites'},
   {k:'historial', e:'📊', t:'Historial'},
   {k:'acuerdo',   e:'🤝', t:'Acuerdo'},
+  {k:'guia',      e:'📖', t:'Guía'},
   {k:'ajustes',   e:'⚙️', t:'Ajustes'}
 ];
+function abrirTodo(){
+  document.querySelectorAll('#v-guia details').forEach(d => d.open = true);
+  setTimeout(() => window.print(), 260);
+}
 function pintarNav(){
   id$('nav').innerHTML = TABS.map(t =>
     `<button class="${t.k===vista?'on':''}" onclick="ir('${t.k}')">
