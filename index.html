@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pantalla Sana — Acuerdo Familiar de Pantalla</title>
+
+<!-- ===== PWA STANDARD + OPEN GRAPH (9 etiquetas obligatorias) ===== -->
+<meta name="description" content="Acuerden el tiempo de pantalla en familia. Límites, franjas de estudio y sueño, historial y un acuerdo firmado por padres e hijos según la ley colombiana.">
+<meta name="theme-color" content="#0D3B44">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pantalla Sana">
+<meta property="og:title" content="Pantalla Sana — Acuerdo Familiar de Pantalla">
+<meta property="og:description" content="No es vigilancia, es un acuerdo. Límites de pantalla, franjas de estudio y sueño, e historial familiar. Cumple Ley 1581 de 2012.">
+<meta property="og:image" content="https://vibraspositivashm.com/img/pantalla-sana-og.jpg">
+<meta property="og:url" content="https://vibraspositivashm.com/pantalla-sana/">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ================================================================ -->
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pantalla Sana">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D3B44'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23EF9B34' stroke-width='5'/%3E%3Cpath d='M32 21v12l8 5' stroke='%23EF9B34' stroke-width='5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D3B44'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23EF9B34' stroke-width='5'/%3E%3Cpath d='M32 21v12l8 5' stroke='%23EF9B34' stroke-width='5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --rio:#0D3B44; --rio2:#16606C; --mango:#EF9B34; --hoja:#3E9C7F;
+  --coral:#D9544A; --papel:#EDF0EC; --card:#FFFFFF; --tinta:#10222A;
+  --tenue:#677C82; --linea:#DCE2DC;
+  --r:16px; --rs:10px;
+  --sh:0 1px 2px rgba(13,59,68,.05), 0 6px 20px rgba(13,59,68,.07);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  background:var(--papel); color:var(--tinta);
+  font-size:16px; line-height:1.5;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom));
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em;margin:0}
+button,input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+/* ---------- Encabezado ---------- */
+header{
+  background:var(--rio); color:#fff;
+  padding:calc(14px + env(safe-area-inset-top)) 0 14px;
+  position:sticky; top:0; z-index:40;
+}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{display:flex;align-items:center;gap:10px}
+.marca svg{flex:none}
+.marca b{font-family:'Fraunces',serif;font-size:19px;font-weight:600;letter-spacing:-.02em;display:block;line-height:1.1}
+.marca small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FB6BC}
+.reloj{text-align:right;line-height:1.25}
+.reloj .h{font-variant-numeric:tabular-nums;font-size:16px;font-weight:600}
+.reloj .d{font-size:10.5px;color:#8FB6BC;text-transform:capitalize}
+
+/* ---------- Chips de hijos ---------- */
+.hijos{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 4px;scrollbar-width:none}
+.hijos::-webkit-scrollbar{display:none}
+.chip{
+  display:flex;align-items:center;gap:8px;flex:none;
+  background:var(--card);border:1.5px solid var(--linea);
+  border-radius:999px;padding:7px 14px 7px 8px;font-size:14.5px;font-weight:500;
+  transition:.15s;
+}
+.chip .av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;background:var(--papel)}
+.chip.on{background:var(--rio);color:#fff;border-color:var(--rio)}
+.chip.on .av{background:rgba(255,255,255,.15)}
+.chip.add{border-style:dashed;color:var(--tenue);padding:7px 14px}
+
+/* ---------- Tarjetas ---------- */
+.card{background:var(--card);border-radius:var(--r);padding:18px;box-shadow:var(--sh);margin-bottom:14px}
+.card h2{font-size:17px;margin-bottom:4px}
+.card .sub{font-size:13px;color:var(--tenue);margin-bottom:14px}
+.eyebrow{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue);font-weight:600;margin-bottom:9px}
+
+/* ---------- Anillo del día ---------- */
+.hoy{text-align:center;padding:24px 18px 20px}
+.ring{position:relative;width:196px;height:196px;margin:0 auto 6px}
+.ring svg{transform:rotate(-90deg)}
+.ring .mid{position:absolute;inset:0;display:grid;place-content:center;gap:1px}
+.ring .big{font-family:'Fraunces',serif;font-size:44px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.ring .lbl{font-size:12px;color:var(--tenue);letter-spacing:.04em}
+.ring .lim{font-size:13px;font-weight:500;margin-top:5px}
+.estado{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:999px;font-size:13.5px;font-weight:500;margin-top:4px}
+.estado.ok{background:rgba(62,156,127,.13);color:#2C7A62}
+.estado.cerca{background:rgba(239,155,52,.16);color:#A56212}
+.estado.pasa{background:rgba(217,84,74,.13);color:var(--coral)}
+
+/* ---------- Aviso de franja ---------- */
+.franja-viva{
+  display:flex;gap:12px;align-items:center;
+  background:var(--rio2);color:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:14px;
+}
+.franja-viva .ic{font-size:22px}
+.franja-viva b{display:block;font-size:15px}
+.franja-viva span{font-size:12.5px;color:#B7D6DA}
+
+/* ---------- Cronómetro ---------- */
+.crono{display:flex;align-items:center;gap:14px;background:var(--tinta);color:#fff;border-radius:var(--r);padding:16px;margin-bottom:14px}
+.crono .t{font-family:'Fraunces',serif;font-size:30px;font-variant-numeric:tabular-nums;font-weight:600;flex:1;line-height:1}
+.crono .t small{display:block;font-family:'Outfit';font-size:11px;font-weight:400;color:#8FB6BC;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.crono button{background:var(--mango);color:var(--tinta);font-weight:600;padding:11px 20px;border-radius:999px;font-size:14.5px}
+.crono button.stop{background:var(--coral);color:#fff}
+
+/* ---------- Botones de categoría ---------- */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px}
+.cat{
+  background:var(--papel);border:1.5px solid transparent;border-radius:var(--rs);
+  padding:12px 8px;text-align:center;transition:.15s;
+}
+.cat.on{border-color:var(--rio);background:#fff}
+.cat .e{font-size:22px;display:block;margin-bottom:3px}
+.cat .n{font-size:11.5px;font-weight:500;line-height:1.25}
+.cat .m{font-size:11px;color:var(--tenue);font-variant-numeric:tabular-nums}
+.libre{font-size:10px;color:var(--hoja);font-weight:600;letter-spacing:.05em}
+
+.suma{display:flex;gap:8px;margin-top:12px}
+.suma button{flex:1;background:var(--papel);border-radius:var(--rs);padding:11px 4px;font-weight:600;font-size:14px}
+.suma button:active{background:var(--linea)}
+
+/* ---------- Puntos ---------- */
+.marcador{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.marcador div{background:var(--papel);border-radius:var(--rs);padding:14px;text-align:center}
+.marcador .v{font-family:'Fraunces',serif;font-size:28px;font-weight:600;line-height:1}
+.marcador .k{font-size:11.5px;color:var(--tenue);margin-top:3px}
+
+/* ---------- Formularios ---------- */
+label{display:block;font-size:12.5px;font-weight:600;color:var(--tenue);margin:12px 0 5px;letter-spacing:.02em}
+input[type=text],input[type=number],input[type=time],input[type=tel],input[type=email],input[type=password],select,textarea{
+  width:100%;padding:11px 13px;border:1.5px solid var(--linea);border-radius:var(--rs);
+  background:#fff;transition:.15s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rio2);box-shadow:0 0 0 3px rgba(22,96,108,.1)}
+textarea{resize:vertical;min-height:72px;line-height:1.55}
+.btn{display:block;width:100%;background:var(--rio);color:#fff;padding:14px;border-radius:var(--rs);font-weight:600;font-size:15.5px;margin-top:16px;transition:.15s}
+.btn:active{transform:scale(.985)}
+.btn.alt{background:var(--mango);color:var(--tinta)}
+.btn.ghost{background:transparent;color:var(--rio);border:1.5px solid var(--linea)}
+.btn.peligro{background:transparent;color:var(--coral);border:1.5px solid rgba(217,84,74,.3)}
+.fila{display:flex;gap:10px}
+.fila>*{flex:1}
+
+/* ---------- Límites por día ---------- */
+.dia{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--linea)}
+.dia:last-child{border:none}
+.dia .n{width:88px;font-size:14.5px;font-weight:500}
+.dia input[type=range]{flex:1;accent-color:var(--rio2);height:22px}
+.dia .v{width:62px;text-align:right;font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--tenue);font-weight:500}
+
+/* ---------- Franjas ---------- */
+.franja{display:flex;align-items:center;gap:12px;padding:12px;background:var(--papel);border-radius:var(--rs);margin-bottom:8px}
+.franja .ic{font-size:20px}
+.franja .info{flex:1;min-width:0}
+.franja .info b{display:block;font-size:14.5px;font-weight:600}
+.franja .info span{font-size:12px;color:var(--tenue);font-variant-numeric:tabular-nums}
+.franja .x{color:var(--coral);font-size:19px;padding:4px 8px;flex:none}
+.dsel{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.dsel button{width:38px;height:38px;border-radius:50%;background:var(--papel);font-size:12px;font-weight:600;color:var(--tenue)}
+.dsel button.on{background:var(--rio);color:#fff}
+
+/* ---------- Gráfica ---------- */
+.graf{display:flex;align-items:flex-end;gap:6px;height:150px;margin:8px 0 4px}
+.barra{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:5px;text-align:center}
+.barra .b{border-radius:6px 6px 3px 3px;background:var(--hoja);min-height:4px;transition:height .4s cubic-bezier(.2,.8,.3,1)}
+.barra .b.over{background:var(--coral)}
+.barra .l{font-size:10.5px;color:var(--tenue);text-transform:capitalize}
+.barra .q{font-size:10.5px;font-variant-numeric:tabular-nums;font-weight:600}
+.meta{position:relative;height:0}
+.meta i{position:absolute;left:0;right:0;border-top:1.5px dashed var(--linea)}
+
+.reg{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--linea);font-size:14px}
+.reg:last-child{border:none}
+.reg .e{font-size:19px}
+.reg .i{flex:1;min-width:0}
+.reg .i b{font-weight:500;display:block}
+.reg .i span{font-size:11.5px;color:var(--tenue)}
+.reg .m{font-variant-numeric:tabular-nums;font-weight:600;font-size:13.5px}
+.reg .x{color:var(--coral);padding:2px 6px;font-size:16px}
+
+/* ---------- ACUERDO (elemento firma) ---------- */
+.pacto{
+  background:#fff;border-radius:var(--r);box-shadow:var(--sh);
+  padding:0;overflow:hidden;margin-bottom:14px;position:relative;
+}
+.pacto-in{
+  border:2px solid var(--rio);border-radius:calc(var(--r) - 4px);
+  margin:6px;padding:26px 20px 22px;position:relative;
+}
+.pacto-in::before{
+  content:'';position:absolute;inset:5px;border:1px solid rgba(13,59,68,.22);border-radius:8px;pointer-events:none;
+}
+.pacto h2{font-size:23px;text-align:center;line-height:1.2;margin-bottom:3px}
+.pacto .quien{text-align:center;font-size:12.5px;color:var(--tenue);letter-spacing:.05em;margin-bottom:18px}
+.pacto ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.65}
+.pacto ol li{margin-bottom:9px;padding-left:3px}
+.pacto ol li::marker{color:var(--mango);font-weight:700}
+.sello{
+  width:82px;height:82px;border-radius:50%;background:var(--mango);
+  display:grid;place-content:center;text-align:center;margin:22px auto 6px;
+  box-shadow:0 3px 12px rgba(239,155,52,.35);
+}
+.sello b{font-family:'Fraunces',serif;font-size:23px;color:var(--tinta);line-height:1;display:block}
+.sello span{font-size:8.5px;letter-spacing:.13em;color:rgba(16,34,42,.7);font-weight:600}
+.firmas{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.firma{text-align:center}
+.firma .nom{font-family:'Fraunces',serif;font-size:18px;font-weight:400;font-style:italic;padding-bottom:6px;min-height:30px}
+.firma .lin{border-top:1.5px solid var(--tinta);padding-top:6px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);font-weight:600}
+.pacto .pie{text-align:center;font-size:11px;color:var(--tenue);margin-top:18px;line-height:1.55}
+
+.regla{display:flex;gap:11px;align-items:flex-start;padding:12px;background:var(--papel);border-radius:var(--rs);margin-bottom:7px;font-size:14px;line-height:1.45}
+.regla input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--rio)}
+.regla.on{background:rgba(62,156,127,.1)}
+
+/* ---------- Aviso legal ---------- */
+.legal{background:rgba(22,96,108,.07);border-left:3px solid var(--rio2);border-radius:0 var(--rs) var(--rs) 0;padding:13px 15px;font-size:12.5px;line-height:1.6;color:#2E4A50;margin:14px 0}
+.legal b{color:var(--rio)}
+.mask{display:flex;align-items:center;gap:9px}
+.mask code{flex:1;background:var(--papel);padding:11px 13px;border-radius:var(--rs);font-family:ui-monospace,monospace;font-size:14px;letter-spacing:.06em}
+.mask button{background:var(--rio);color:#fff;padding:11px 15px;border-radius:var(--rs);font-size:13px;font-weight:600}
+
+/* ---------- Navegación inferior ---------- */
+nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(14px);
+  border-top:1px solid var(--linea);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.nav{display:flex;max-width:560px;margin:0 auto}
+.nav button{flex:1;padding:10px 2px 11px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--tenue);transition:.15s}
+.nav button .e{font-size:19px;line-height:1}
+.nav button .t{font-size:10px;font-weight:600;letter-spacing:.01em}
+.nav button.on{color:var(--rio)}
+.nav button.on .e{transform:translateY(-1px)}
+
+.vista{display:none;animation:sube .28s cubic-bezier(.2,.8,.3,1)}
+.vista.on{display:block}
+@keyframes sube{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.vacio{text-align:center;padding:34px 20px;color:var(--tenue)}
+.vacio .e{font-size:38px;display:block;margin-bottom:10px;opacity:.55}
+.vacio p{font-size:14px;margin:0 0 4px}
+.creditos{text-align:center;font-size:11.5px;color:var(--tenue);padding:22px 16px 28px;line-height:1.7}
+.creditos b{color:var(--rio);font-weight:600}
+.toast{
+  position:fixed;left:50%;bottom:96px;transform:translate(-50%,14px);
+  background:var(--tinta);color:#fff;padding:12px 20px;border-radius:999px;
+  font-size:14px;font-weight:500;z-index:99;opacity:0;pointer-events:none;transition:.25s;
+  max-width:90vw;text-align:center;
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  header,nav,.hijos,.no-print,.toast{display:none!important}
+  body{background:#fff;padding:0}
+  .pacto{box-shadow:none;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="marca">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,.09)"/>
+        <circle cx="32" cy="32" r="17" fill="none" stroke="#EF9B34" stroke-width="4.5"/>
+        <path d="M32 21v12l8 5" stroke="#EF9B34" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <div><b>Pantalla Sana</b><small>Acuerdo familiar</small></div>
+    </div>
+    <div class="reloj"><div class="h" id="relojH">--:--</div><div class="d" id="relojD">—</div></div>
+  </div>
+</header>
+
+<div class="hijos" id="chips"></div>
+
+<main class="wrap">
+
+<!-- ================= HOY ================= -->
+<section class="vista on" id="v-hoy">
+  <div id="avisoFranja"></div>
+
+  <div class="card hoy">
+    <div class="ring">
+      <svg width="196" height="196" viewBox="0 0 196 196">
+        <circle cx="98" cy="98" r="84" fill="none" stroke="#EDF0EC" stroke-width="15"/>
+        <circle id="arco" cx="98" cy="98" r="84" fill="none" stroke="#3E9C7F" stroke-width="15"
+                stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="527.8"
+                style="transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.3,1),stroke .3s"/>
+      </svg>
+      <div class="mid">
+        <div class="big" id="usadoTxt">0m</div>
+        <div class="lbl">de pantalla hoy</div>
+      </div>
+    </div>
+    <div class="lim" id="limTxt"></div>
+    <div id="estadoDia"></div>
+  </div>
+
+  <div class="crono">
+    <div class="t" id="cronoT">00:00<small id="cronoL">Cronómetro detenido</small></div>
+    <button id="cronoB" onclick="toggleCrono()">Iniciar</button>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Registrar tiempo</div>
+    <div class="cats" id="cats"></div>
+    <div class="suma">
+      <button onclick="sumar(15)">+15 min</button>
+      <button onclick="sumar(30)">+30 min</button>
+      <button onclick="sumar(60)">+1 hora</button>
+      <button onclick="sumarOtro()">Otro</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Cómo va la semana</div>
+    <div class="marcador">
+      <div><div class="v" id="pts">0</div><div class="k">puntos ganados</div></div>
+      <div><div class="v" id="racha">0</div><div class="k">días seguidos cumpliendo</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">Registros de hoy</div>
+    <div id="regsHoy"></div>
+  </div>
+</section>
+
+<!-- ================= LÍMITES ================= -->
+<section class="vista" id="v-limites">
+  <div class="card">
+    <h2>Minutos por día</h2>
+    <p class="sub">Solo cuentan juegos, redes y video. Estudio y mensajes nunca restan tiempo.</p>
+    <div id="dias"></div>
+  </div>
+
+  <div class="card">
+    <h2>Franjas sin pantalla</h2>
+    <p class="sub">Momentos del día en que el teléfono descansa: colegio, comidas, sueño.</p>
+    <div id="franjas"></div>
+    <div style="border-top:1px solid var(--linea);margin-top:14px;padding-top:6px">
+      <label for="fNom">Nombre de la franja</label>
+      <input type="text" id="fNom" placeholder="Tareas de la tarde">
+      <div class="fila">
+        <div><label for="fIni">Empieza</label><input type="time" id="fIni" value="14:00"></div>
+        <div><label for="fFin">Termina</label><input type="time" id="fFin" value="16:00"></div>
+      </div>
+      <label>Días que aplica</label>
+      <div class="dsel" id="fDias"></div>
+      <button class="btn ghost" onclick="addFranja()">Agregar franja</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORIAL ================= -->
+<section class="vista" id="v-historial">
+  <div class="card">
+    <h2>Últimos 7 días</h2>
+    <p class="sub">La línea punteada marca el límite acordado de cada día.</p>
+    <div class="graf" id="graf"></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">Reparto por categoría</div>
+    <div id="porCat"></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">Reporte semanal</div>
+    <p class="sub" style="margin-bottom:0">Un resumen listo para enviar al otro cuidador, al colegio o al psicólogo.</p>
+    <button class="btn alt" onclick="compartirWA()">Enviar por WhatsApp</button>
+  </div>
+</section>
+
+<!-- ================= ACUERDO ================= -->
+<section class="vista" id="v-acuerdo">
+  <div id="pactoFirmado"></div>
+
+  <div class="card no-print" id="constructor">
+    <h2>Construir el acuerdo</h2>
+    <p class="sub">Escojan juntos las reglas. Un acuerdo que el hijo no ayudó a escribir no se cumple.</p>
+    <div class="eyebrow" style="margin-top:16px">Reglas propuestas</div>
+    <div id="reglas"></div>
+    <label for="rNueva">Agregar una regla propia</label>
+    <div class="fila">
+      <input type="text" id="rNueva" placeholder="El celular no entra al comedor">
+      <button class="btn ghost" style="flex:0 0 92px;margin:0" onclick="addRegla()">Agregar</button>
+    </div>
+
+    <div class="legal">
+      <b>Antes de firmar.</b> El Decreto 1377 de 2013 exige que, para tratar datos de un menor,
+      su representante legal autorice <b>después</b> de que el menor haya sido escuchado, valorando
+      su madurez y autonomía. Esa conversación no es un trámite: es el acuerdo.
+    </div>
+
+    <div class="regla" id="wrapEsc">
+      <input type="checkbox" id="escuchado">
+      <label for="escuchado" style="margin:0;font-weight:400;color:var(--tinta);font-size:14px;text-transform:none;letter-spacing:0">
+        Conversamos las reglas. Mi hijo dio su opinión y la tuvimos en cuenta.
+      </label>
+    </div>
+
+    <div class="fila">
+      <div><label for="fPadre">Firma del adulto</label><input type="text" id="fPadre" placeholder="Nombre completo"></div>
+      <div><label for="fHijo">Firma del hijo</label><input type="text" id="fHijo" placeholder="Nombre"></div>
+    </div>
+    <button class="btn" onclick="firmar()">Firmar el acuerdo</button>
+  </div>
+</section>
+
+<!-- ================= AJUSTES ================= -->
+<section class="vista" id="v-ajustes">
+  <div class="card">
+    <h2>La familia</h2>
+    <p class="sub">Estos datos no salen de este teléfono.</p>
+    <label for="aFam">Apellido de familia</label>
+    <input type="text" id="aFam" placeholder="Marín Machado">
+    <label for="aResp">Adulto responsable</label>
+    <input type="text" id="aResp" placeholder="Nombre completo">
+    <label for="aTel">Teléfono de contacto</label>
+    <input type="tel" id="aTel" placeholder="311 770 0431">
+    <label>Documento del responsable</label>
+    <div class="mask">
+      <code id="docVista">— sin registrar —</code>
+      <button onclick="verDoc()" id="docBtn">Ver</button>
+    </div>
+    <input type="text" id="aDoc" placeholder="Escribir para cambiar" style="margin-top:8px">
+    <label for="aPin">PIN de administrador (4 dígitos)</label>
+    <input type="password" id="aPin" inputmode="numeric" maxlength="4" placeholder="••••">
+    <button class="btn" onclick="guardarFam()">Guardar</button>
+  </div>
+
+  <div class="card">
+    <h2>Hijos e hijas</h2>
+    <div id="listaHijos"></div>
+    <div class="fila" style="margin-top:12px">
+      <div style="flex:2"><label for="hNom">Nombre</label><input type="text" id="hNom" placeholder="Alaia"></div>
+      <div style="flex:1"><label for="hEdad">Edad</label><input type="number" id="hEdad" min="2" max="17" placeholder="9"></div>
+    </div>
+    <button class="btn ghost" onclick="addHijo()">Agregar</button>
+  </div>
+
+  <div class="card">
+    <h2>Tratamiento de datos</h2>
+    <div class="legal">
+      <b>Aviso de privacidad — Ley 1581 de 2012.</b><br><br>
+      <b>Responsable:</b> la familia usuaria de esta aplicación. Vibras Positivas HM no recibe,
+      almacena ni transmite ningún dato registrado aquí.<br><br>
+      <b>Finalidad:</b> acordar y hacer seguimiento al tiempo de pantalla del menor, en su
+      interés superior (Art. 44 de la Constitución).<br><br>
+      <b>Datos de menores:</b> el Art. 7 de la Ley 1581 los declara de protección especial. Su
+      tratamiento solo procede si respeta el interés superior del menor, asegura sus derechos
+      fundamentales y garantiza su derecho a ser escuchado.<br><br>
+      <b>Carácter facultativo:</b> ningún dato de esta aplicación es obligatorio. Se pueden
+      borrar todos en cualquier momento con el botón de abajo.<br><br>
+      <b>Almacenamiento:</b> exclusivamente local, en el navegador de este dispositivo. Al
+      desinstalar o borrar los datos del navegador, la información desaparece sin copia.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Respaldo</h2>
+    <p class="sub">Un archivo con todo. Sirve para pasar a otro teléfono.</p>
+    <button class="btn ghost" onclick="exportar()">Descargar respaldo</button>
+    <button class="btn ghost" onclick="document.getElementById('impFile').click()">Restaurar respaldo</button>
+    <input type="file" id="impFile" accept=".json" style="display:none" onchange="importar(event)">
+    <button class="btn peligro" onclick="borrarTodo()">Borrar todos los datos</button>
+  </div>
+
+  <div class="creditos">
+    Pantalla Sana v1.0 · Caucasia, Antioquia<br>
+    <b>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</b>
+  </div>
+</section>
+
+</main>
+
+<nav><div class="nav" id="nav"></div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+
+/* ========== 1. Almacenamiento con respaldo en memoria ========== */
+const Store = (() => {
+  let ok = true, mem = {};
+  try { const k='__ps'; localStorage.setItem(k,'1'); localStorage.removeItem(k); }
+  catch(e){ ok = false; }
+  return {
+    get(k){ try{ return ok ? localStorage.getItem(k) : (mem[k] ?? null); }catch(e){ return mem[k] ?? null; } },
+    set(k,v){ try{ ok ? localStorage.setItem(k,v) : (mem[k]=v); }catch(e){ mem[k]=v; } },
+    del(k){ try{ ok ? localStorage.removeItem(k) : delete mem[k]; }catch(e){ delete mem[k]; } },
+    persistente: ok
+  };
+})();
+const CLAVE = 'pantallasana_v1';
+
+/* ========== 2. Reloj Colombia (UTC-5) ========== */
+const TZ = 'America/Bogota';
+const DIAS = ['dom','lun','mar','mie','jue','vie','sab'];
+const DIAS_L = {dom:'domingo',lun:'lunes',mar:'martes',mie:'miércoles',jue:'jueves',vie:'viernes',sab:'sábado'};
+
+function fechaCO(d = new Date()){
+  return new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+}
+function partesCO(d = new Date()){
+  const p = new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(d);
+  const o = {}; p.forEach(x => o[x.type] = x.value);
+  return {h:+o.hour % 24, m:+o.minute, s:+o.second};
+}
+function minutosAhoraCO(){ const t = partesCO(); return t.h*60 + t.m; }
+function diaSemana(fecha){ return DIAS[new Date(fecha + 'T12:00:00').getDay()]; }
+function fechaLarga(fecha){
+  return new Date(fecha + 'T12:00:00').toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+}
+function hm(min){
+  min = Math.round(min);
+  const h = Math.floor(min/60), m = min%60;
+  return h ? (m ? h+'h '+m+'m' : h+'h') : m+'m';
+}
+function tick(){
+  const t = partesCO();
+  const ap = t.h >= 12 ? 'p. m.' : 'a. m.';
+  const h12 = t.h % 12 === 0 ? 12 : t.h % 12;
+  document.getElementById('relojH').textContent = h12 + ':' + String(t.m).padStart(2,'0') + ' ' + ap;
+  document.getElementById('relojD').textContent = DIAS_L[diaSemana(fechaCO())] + ' ' + fechaCO().slice(8) + '/' + fechaCO().slice(5,7);
+  if (crono.activo) pintarCrono();
+}
+
+/* ========== 3. Datos ========== */
+const CATS = {
+  juegos:   {n:'Juegos',       e:'🎮', cuenta:true},
+  redes:    {n:'Redes',        e:'📱', cuenta:true},
+  video:    {n:'Video',        e:'📺', cuenta:true},
+  estudio:  {n:'Estudio',      e:'📚', cuenta:false},
+  contacto: {n:'Mensajes',     e:'💬', cuenta:false}
+};
+const REGLAS_BASE = [
+  'El teléfono duerme fuera del cuarto.',
+  'Nada de pantallas durante las comidas, ni de los adultos.',
+  'Primero las tareas, después los juegos.',
+  'Si me piden guardarlo, lo guardo sin discutir.',
+  'No acepto solicitudes de personas que no conozco en la vida real.',
+  'Si algo en internet me incomoda o me da miedo, lo cuento el mismo día.',
+  'Las contraseñas las conocemos los dos.',
+  'El fin de semana hay una hora más, si la semana se cumplió.',
+  'Los adultos también cumplimos estas reglas donde aplican.'
+];
+const AV = ['🦊','🐨','🐧','🦁','🐼','🐢','🦋','🐝','🐬','🦉'];
+
+let D = cargar();
+let vista = 'hoy';
+let catSel = 'juegos';
+let diasNueva = ['lun','mar','mie','jue','vie'];
+let crono = {activo:false, inicio:0, cat:'juegos'};
+let docVisible = false;
+
+function base(){
+  return {
+    familia:{nombre:'',responsable:'',telefono:'',doc:'',pin:''},
+    hijos:[], activo:null, limites:{}, franjas:{}, registros:[], acuerdos:[], reglasExtra:[]
+  };
+}
+function cargar(){
+  try{
+    const raw = Store.get(CLAVE);
+    if(!raw) return base();
+    return Object.assign(base(), JSON.parse(raw));
+  }catch(e){ return base(); }
+}
+function guardar(){ Store.set(CLAVE, JSON.stringify(D)); }
+
+function limitesDe(id){
+  if(!D.limites[id]) D.limites[id] = {lun:90,mar:90,mie:90,jue:90,vie:120,sab:180,dom:180};
+  return D.limites[id];
+}
+function franjasDe(id){
+  if(!D.franjas[id]) D.franjas[id] = [
+    {id:'f1',nombre:'Colegio',ini:'07:00',fin:'13:00',dias:['lun','mar','mie','jue','vie'],ic:'🎒'},
+    {id:'f2',nombre:'Hora de dormir',ini:'21:00',fin:'06:00',dias:['dom','lun','mar','mie','jue','vie','sab'],ic:'🌙'},
+    {id:'f3',nombre:'Almuerzo en familia',ini:'12:00',fin:'13:00',dias:['sab','dom'],ic:'🍽️'}
+  ];
+  return D.franjas[id];
+}
+function hijo(){ return D.hijos.find(h => h.id === D.activo) || null; }
+function minsDia(id, fecha){
+  return D.registros.filter(r => r.hijoId===id && r.fecha===fecha && CATS[r.cat] && CATS[r.cat].cuenta)
+                    .reduce((s,r) => s + r.min, 0);
+}
+function limiteDia(id, fecha){ return limitesDe(id)[diaSemana(fecha)]; }
+
+/* ========== 4. Utilidades de interfaz ========== */
+function toast(t){
+  const el = document.getElementById('toast');
+  el.textContent = t; el.classList.add('on');
+  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2400);
+}
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+const id$ = i => document.getElementById(i);
+
+/* ========== 5. Navegación ========== */
+const TABS = [
+  {k:'hoy',       e:'☀️', t:'Hoy'},
+  {k:'limites',   e:'⏱️', t:'Límites'},
+  {k:'historial', e:'📊', t:'Historial'},
+  {k:'acuerdo',   e:'🤝', t:'Acuerdo'},
+  {k:'ajustes',   e:'⚙️', t:'Ajustes'}
+];
+function pintarNav(){
+  id$('nav').innerHTML = TABS.map(t =>
+    `<button class="${t.k===vista?'on':''}" onclick="ir('${t.k}')">
+       <span class="e">${t.e}</span><span class="t">${t.t}</span></button>`).join('');
+}
+function ir(k){
+  vista = k;
+  document.querySelectorAll('.vista').forEach(v => v.classList.toggle('on', v.id === 'v'+'-'+k));
+  pintarNav(); render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ========== 6. Chips de hijos ========== */
+function pintarChips(){
+  const c = id$('chips');
+  if(!D.hijos.length){
+    c.innerHTML = `<button class="chip add" onclick="ir('ajustes')">+ Agregar a un hijo</button>`;
+    return;
+  }
+  c.innerHTML = D.hijos.map(h =>
+    `<button class="chip ${h.id===D.activo?'on':''}" onclick="selHijo('${h.id}')">
+       <span class="av">${h.av}</span>${esc(h.nombre)}</button>`).join('') +
+    `<button class="chip add" onclick="ir('ajustes')">+</button>`;
+}
+function selHijo(id){ D.activo = id; guardar(); render(); }
+
+/* ========== 7. Vista HOY ========== */
+function pintarHoy(){
+  const h = hijo();
+  if(!h){
+    id$('v-hoy').innerHTML = `<div class="card vacio"><span class="e">🤝</span>
+      <p><b>Todavía no hay nadie registrado.</b></p>
+      <p>Agrega a tu hijo o hija en Ajustes para empezar.</p>
+      <button class="btn" style="max-width:240px;margin:18px auto 0" onclick="ir('ajustes')">Ir a Ajustes</button></div>`;
+    return;
+  }
+  const hoy = fechaCO(), usado = minsDia(h.id,hoy), lim = limiteDia(h.id,hoy);
+  const pct = lim > 0 ? Math.min(usado/lim,1) : 0;
+  const C = 2*Math.PI*84;
+
+  id$('usadoTxt').textContent = hm(usado);
+  id$('limTxt').innerHTML = `Acordado para hoy: <b>${hm(lim)}</b>`;
+  const arco = id$('arco');
+  arco.setAttribute('stroke-dashoffset', C*(1-pct));
+  arco.setAttribute('stroke', usado > lim ? '#D9544A' : (pct > .8 ? '#EF9B34' : '#3E9C7F'));
+
+  const rest = lim - usado;
+  id$('estadoDia').innerHTML = usado > lim
+    ? `<div class="estado pasa">Pasó ${hm(usado-lim)} del acuerdo</div>`
+    : (pct > .8
+      ? `<div class="estado cerca">Quedan ${hm(rest)}</div>`
+      : `<div class="estado ok">Quedan ${hm(rest)}</div>`);
+
+  // Franja activa
+  const ahora = minutosAhoraCO(), hoyDia = diaSemana(hoy);
+  const act = franjasDe(h.id).find(f => {
+    if(!f.dias.includes(hoyDia)) return false;
+    const a = +f.ini.slice(0,2)*60 + +f.ini.slice(3), b = +f.fin.slice(0,2)*60 + +f.fin.slice(3);
+    return a < b ? (ahora >= a && ahora < b) : (ahora >= a || ahora < b);
+  });
+  id$('avisoFranja').innerHTML = act
+    ? `<div class="franja-viva"><span class="ic">${act.ic||'⏸️'}</span>
+        <div><b>${esc(act.nombre)}</b><span>La pantalla descansa hasta las ${act.fin}</span></div></div>`
+    : '';
+
+  // Categorías
+  id$('cats').innerHTML = Object.entries(CATS).map(([k,c]) => {
+    const m = D.registros.filter(r => r.hijoId===h.id && r.fecha===hoy && r.cat===k).reduce((s,r)=>s+r.min,0);
+    return `<button class="cat ${k===catSel?'on':''}" onclick="catSel='${k}';render()">
+      <span class="e">${c.e}</span><span class="n">${c.n}</span>
+      <span class="m">${m ? hm(m) : '—'}</span>
+      ${c.cuenta ? '' : '<span class="libre">libre</span>'}</button>`;
+  }).join('');
+
+  // Puntos y racha
+  let pts = 0, racha = 0, corte = false;
+  for(let i=0;i<28;i++){
+    const f = fechaCO(new Date(Date.now() - i*864e5));
+    const hay = D.registros.some(r => r.hijoId===h.id && r.fecha===f);
+    const cumple = minsDia(h.id,f) <= limiteDia(h.id,f);
+    if(hay && cumple) pts += 10;
+    if(!corte){ if(cumple) racha++; else corte = true; }
+  }
+  id$('pts').textContent = pts;
+  id$('racha').textContent = racha;
+
+  // Registros de hoy
+  const rs = D.registros.filter(r => r.hijoId===h.id && r.fecha===hoy).sort((a,b)=>b.ts-a.ts);
+  id$('regsHoy').innerHTML = rs.length ? rs.map(r =>
+    `<div class="reg"><span class="e">${CATS[r.cat].e}</span>
+      <div class="i"><b>${CATS[r.cat].n}</b><span>${new Date(r.ts).toLocaleTimeString('es-CO',{timeZone:TZ,hour:'2-digit',minute:'2-digit'})}</span></div>
+      <span class="m">${hm(r.min)}</span>
+      <button class="x" onclick="borrarReg('${r.id}')" aria-label="Borrar">×</button></div>`).join('')
+    : `<div class="vacio" style="padding:20px"><p>Sin registros hoy. Usa el cronómetro o los botones de arriba.</p></div>`;
+}
+
+function sumar(min){
+  const h = hijo(); if(!h) return toast('Primero agrega a un hijo');
+  D.registros.push({id:'r'+Date.now(),hijoId:h.id,fecha:fechaCO(),cat:catSel,min,ts:Date.now()});
+  guardar(); render(); toast(`+${hm(min)} en ${CATS[catSel].n.toLowerCase()}`);
+}
+function sumarOtro(){
+  const v = prompt('¿Cuántos minutos?','45');
+  const n = parseInt(v,10);
+  if(n > 0 && n <= 720) sumar(n); else if(v !== null) toast('Escribe un número entre 1 y 720');
+}
+function borrarReg(id){ D.registros = D.registros.filter(r => r.id !== id); guardar(); render(); }
+
+/* ========== 8. Cronómetro ========== */
+function toggleCrono(){
+  const h = hijo(); if(!h) return toast('Primero agrega a un hijo');
+  if(crono.activo){
+    const min = Math.max(1, Math.round((Date.now()-crono.inicio)/60000));
+    D.registros.push({id:'r'+Date.now(),hijoId:h.id,fecha:fechaCO(),cat:crono.cat,min,ts:Date.now()});
+    crono.activo = false; guardar(); render(); toast(`Se registraron ${hm(min)}`);
+  }else{
+    crono = {activo:true, inicio:Date.now(), cat:catSel};
+    pintarCrono(); id$('cronoB').textContent = 'Detener'; id$('cronoB').classList.add('stop');
+  }
+}
+function pintarCrono(){
+  if(!crono.activo){
+    id$('cronoT').innerHTML = `00:00<small>Cronómetro detenido</small>`;
+    id$('cronoB').textContent = 'Iniciar'; id$('cronoB').classList.remove('stop');
+    return;
+  }
+  const s = Math.floor((Date.now()-crono.inicio)/1000);
+  const txt = String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+  id$('cronoT').innerHTML = `${txt}<small>Contando ${CATS[crono.cat].n.toLowerCase()}</small>`;
+}
+
+/* ========== 9. Vista LÍMITES ========== */
+function pintarLimites(){
+  const h = hijo(); if(!h){ id$('dias').innerHTML = '<div class="vacio"><p>Agrega a un hijo primero.</p></div>'; id$('franjas').innerHTML=''; return; }
+  const L = limitesDe(h.id);
+  id$('dias').innerHTML = DIAS.slice(1).concat('dom').map(d =>
+    `<div class="dia"><span class="n">${DIAS_L[d]}</span>
+      <input type="range" min="0" max="360" step="15" value="${L[d]}" oninput="setLim('${d}',this.value)">
+      <span class="v" id="lv-${d}">${hm(L[d])}</span></div>`).join('');
+
+  id$('franjas').innerHTML = franjasDe(h.id).map(f =>
+    `<div class="franja"><span class="ic">${f.ic||'⏸️'}</span>
+      <div class="info"><b>${esc(f.nombre)}</b>
+        <span>${f.ini} – ${f.fin} · ${f.dias.map(d=>d[0].toUpperCase()+d.slice(1,3)).join(' ')}</span></div>
+      <button class="x" onclick="delFranja('${f.id}')" aria-label="Quitar">×</button></div>`).join('')
+    || `<div class="vacio" style="padding:18px"><p>Sin franjas. Agrega una abajo.</p></div>`;
+
+  id$('fDias').innerHTML = DIAS.slice(1).concat('dom').map(d =>
+    `<button class="${diasNueva.includes(d)?'on':''}" onclick="togDia('${d}')">${d[0].toUpperCase()+d.slice(1,3)}</button>`).join('');
+}
+function setLim(d,v){
+  const h = hijo(); if(!h) return;
+  limitesDe(h.id)[d] = +v; id$('lv-'+d).textContent = hm(+v);
+  clearTimeout(window._lt); window._lt = setTimeout(guardar, 350);
+}
+function togDia(d){
+  diasNueva = diasNueva.includes(d) ? diasNueva.filter(x=>x!==d) : diasNueva.concat(d);
+  pintarLimites();
+}
+function addFranja(){
+  const h = hijo(); if(!h) return toast('Agrega a un hijo primero');
+  const n = id$('fNom').value.trim();
+  if(!n) return toast('Ponle un nombre a la franja');
+  if(!diasNueva.length) return toast('Escoge al menos un día');
+  franjasDe(h.id).push({id:'f'+Date.now(),nombre:n,ini:id$('fIni').value,fin:id$('fFin').value,dias:[...diasNueva],ic:'⏸️'});
+  id$('fNom').value = ''; guardar(); render(); toast('Franja agregada');
+}
+function delFranja(fid){
+  const h = hijo(); if(!h) return;
+  D.franjas[h.id] = franjasDe(h.id).filter(f => f.id !== fid);
+  guardar(); render();
+}
+
+/* ========== 10. Vista HISTORIAL ========== */
+function pintarHistorial(){
+  const h = hijo();
+  if(!h){ id$('graf').innerHTML=''; id$('porCat').innerHTML='<div class="vacio"><p>Agrega a un hijo primero.</p></div>'; return; }
+  const dias = [];
+  for(let i=6;i>=0;i--){
+    const f = fechaCO(new Date(Date.now() - i*864e5));
+    dias.push({f, min:minsDia(h.id,f), lim:limiteDia(h.id,f)});
+  }
+  const tope = Math.max(...dias.map(d => Math.max(d.min,d.lim)), 60);
+  id$('graf').innerHTML = dias.map(d => {
+    const alt = Math.max(4, (d.min/tope)*120);
+    return `<div class="barra">
+      <span class="q">${d.min ? hm(d.min) : ''}</span>
+      <div class="b ${d.min>d.lim?'over':''}" style="height:${alt}px"></div>
+      <span class="l">${DIAS_L[diaSemana(d.f)].slice(0,3)}</span></div>`;
+  }).join('');
+
+  const tot = {};
+  D.registros.filter(r => r.hijoId===h.id && dias.some(d=>d.f===r.fecha))
+             .forEach(r => tot[r.cat] = (tot[r.cat]||0) + r.min);
+  const suma = Object.values(tot).reduce((a,b)=>a+b,0);
+  id$('porCat').innerHTML = suma ? Object.entries(CATS).filter(([k])=>tot[k]).map(([k,c]) =>
+    `<div class="reg"><span class="e">${c.e}</span>
+      <div class="i"><b>${c.n}</b><span>${Math.round(tot[k]/suma*100)}% del total</span></div>
+      <span class="m">${hm(tot[k])}</span></div>`).join('')
+    : `<div class="vacio" style="padding:20px"><p>Aún no hay registros esta semana.</p></div>`;
+}
+
+function compartirWA(){
+  const h = hijo(); if(!h) return toast('Agrega a un hijo primero');
+  let cum = 0, tot = 0, lin = [];
+  for(let i=6;i>=0;i--){
+    const f = fechaCO(new Date(Date.now() - i*864e5));
+    const m = minsDia(h.id,f), l = limiteDia(h.id,f);
+    tot += m; if(m <= l) cum++;
+    lin.push(`${DIAS_L[diaSemana(f)].slice(0,3)}: ${hm(m)} de ${hm(l)} ${m<=l?'✅':'⚠️'}`);
+  }
+  const t = `*Pantalla Sana — reporte de ${h.nombre}*\n${fechaLarga(fechaCO())}\n\n`
+    + lin.join('\n')
+    + `\n\n*Total de la semana:* ${hm(tot)}\n*Días dentro del acuerdo:* ${cum} de 7\n\n`
+    + `_Desarrollada por Vibras Positivas HM_`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
+}
+
+/* ========== 11. Vista ACUERDO ========== */
+function pintarAcuerdo(){
+  const h = hijo();
+  if(!h){
+    id$('pactoFirmado').innerHTML = '';
+    id$('constructor').innerHTML = '<div class="vacio"><span class="e">🤝</span><p>Agrega a un hijo para construir el acuerdo.</p></div>';
+    return;
+  }
+  const ac = D.acuerdos.filter(a => a.hijoId===h.id).sort((a,b)=>b.ts-a.ts)[0];
+  id$('pactoFirmado').innerHTML = ac ? `
+    <div class="pacto"><div class="pacto-in">
+      <h2>Acuerdo de Pantalla</h2>
+      <div class="quien">${esc(h.nombre.toUpperCase())} · ${esc((D.familia.nombre||'').toUpperCase())}</div>
+      <ol>${ac.reglas.map(r => `<li>${esc(r)}</li>`).join('')}</ol>
+      <div class="sello"><b>${esc(h.nombre[0]||'·')}</b><span>ACORDADO</span></div>
+      <div class="firmas">
+        <div class="firma"><div class="nom">${esc(ac.padre)}</div><div class="lin">Adulto responsable</div></div>
+        <div class="firma"><div class="nom">${esc(ac.hijo)}</div><div class="lin">${h.edad<12?'Hijo / Hija':'Adolescente'}</div></div>
+      </div>
+      <div class="pie">Firmado en Caucasia, ${fechaLarga(ac.fecha)}.<br>
+        El menor fue escuchado antes de firmar, conforme al Decreto 1377 de 2013, Art. 12.</div>
+    </div></div>
+    <div class="fila no-print" style="margin-bottom:14px">
+      <button class="btn ghost" style="margin:0" onclick="window.print()">Imprimir</button>
+      <button class="btn alt" style="margin:0" onclick="compartirPacto()">Compartir</button>
+    </div>` : '';
+
+  const reglas = REGLAS_BASE.concat(D.reglasExtra);
+  const marcadas = ac ? ac.reglas : [];
+  id$('reglas').innerHTML = reglas.map((r,i) =>
+    `<label class="regla ${marcadas.includes(r)?'on':''}">
+      <input type="checkbox" value="${esc(r)}" ${marcadas.includes(r)?'checked':''} onchange="this.closest('.regla').classList.toggle('on',this.checked)">
+      <span>${esc(r)}</span></label>`).join('');
+  if(ac){ id$('fPadre').value = ac.padre; id$('fHijo').value = ac.hijo; id$('escuchado').checked = true; }
+}
+function addRegla(){
+  const v = id$('rNueva').value.trim();
+  if(!v) return toast('Escribe la regla');
+  D.reglasExtra.push(v); id$('rNueva').value = ''; guardar(); render(); toast('Regla agregada');
+}
+function firmar(){
+  const h = hijo(); if(!h) return;
+  const reglas = [...document.querySelectorAll('#reglas input:checked')].map(i => i.value);
+  if(reglas.length < 3) return toast('Escojan al menos 3 reglas');
+  if(!id$('escuchado').checked) return toast('Falta confirmar que conversaron las reglas');
+  const p = id$('fPadre').value.trim(), c = id$('fHijo').value.trim();
+  if(!p || !c) return toast('Faltan las dos firmas');
+  D.acuerdos = D.acuerdos.filter(a => a.hijoId !== h.id);
+  D.acuerdos.push({id:'a'+Date.now(),hijoId:h.id,reglas,padre:p,hijo:c,fecha:fechaCO(),ts:Date.now()});
+  guardar(); render(); toast('Acuerdo firmado');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function compartirPacto(){
+  const h = hijo(); const ac = D.acuerdos.find(a => a.hijoId===h.id); if(!ac) return;
+  const t = `*ACUERDO DE PANTALLA — ${h.nombre}*\n${fechaLarga(ac.fecha)}\n\n`
+    + ac.reglas.map((r,i) => `${i+1}. ${r}`).join('\n')
+    + `\n\nFirman: ${ac.padre} y ${ac.hijo}\n\n_Desarrollada por Vibras Positivas HM_`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
+}
+
+/* ========== 12. Vista AJUSTES ========== */
+function pintarAjustes(){
+  id$('aFam').value = D.familia.nombre || '';
+  id$('aResp').value = D.familia.responsable || '';
+  id$('aTel').value = D.familia.telefono || '';
+  const d = D.familia.doc || '';
+  id$('docVista').textContent = d ? (docVisible ? d : '•'.repeat(Math.max(0,d.length-4)) + d.slice(-4)) : '— sin registrar —';
+  id$('docBtn').textContent = docVisible ? 'Ocultar' : 'Ver';
+
+  id$('listaHijos').innerHTML = D.hijos.length ? D.hijos.map(h =>
+    `<div class="reg"><span class="e">${h.av}</span>
+      <div class="i"><b>${esc(h.nombre)}</b><span>${h.edad} años · ${h.edad<12?'requiere autorización del representante legal':'puede ser consultado directamente'}</span></div>
+      <button class="x" onclick="delHijo('${h.id}')" aria-label="Quitar">×</button></div>`).join('')
+    : `<div class="vacio" style="padding:18px"><p>Nadie registrado todavía.</p></div>`;
+}
+function verDoc(){
+  if(!D.familia.doc) return toast('No hay documento registrado');
+  if(docVisible){ docVisible = false; return render(); }
+  if(!D.familia.pin) return toast('Configura un PIN de administrador primero');
+  const p = prompt('PIN de administrador:');
+  if(p === D.familia.pin){ docVisible = true; render(); setTimeout(()=>{docVisible=false;render();}, 15000); }
+  else if(p !== null) toast('PIN incorrecto');
+}
+function guardarFam(){
+  D.familia.nombre = id$('aFam').value.trim();
+  D.familia.responsable = id$('aResp').value.trim();
+  D.familia.telefono = id$('aTel').value.trim();
+  const d = id$('aDoc').value.trim(); if(d){ D.familia.doc = d; id$('aDoc').value=''; }
+  const p = id$('aPin').value.trim(); if(p){ if(!/^\d{4}$/.test(p)) return toast('El PIN debe tener 4 dígitos'); D.familia.pin = p; id$('aPin').value=''; }
+  guardar(); render(); toast('Datos guardados');
+}
+function addHijo(){
+  const n = id$('hNom').value.trim(), e = parseInt(id$('hEdad').value,10);
+  if(!n) return toast('Falta el nombre');
+  if(!(e >= 2 && e <= 17)) return toast('La edad debe estar entre 2 y 17');
+  const nuevo = {id:'h'+Date.now(), nombre:n, edad:e, av:AV[D.hijos.length % AV.length]};
+  D.hijos.push(nuevo); D.activo = nuevo.id;
+  id$('hNom').value = ''; id$('hEdad').value = '';
+  guardar(); render(); toast(`${n} agregado`);
+}
+function delHijo(hid){
+  const h = D.hijos.find(x => x.id === hid);
+  if(!confirm(`¿Quitar a ${h.nombre}? Se borran sus registros y su acuerdo.`)) return;
+  D.hijos = D.hijos.filter(x => x.id !== hid);
+  D.registros = D.registros.filter(r => r.hijoId !== hid);
+  D.acuerdos = D.acuerdos.filter(a => a.hijoId !== hid);
+  delete D.limites[hid]; delete D.franjas[hid];
+  if(D.activo === hid) D.activo = D.hijos[0]?.id || null;
+  guardar(); render();
+}
+
+/* ========== 13. Respaldo ========== */
+function exportar(){
+  const b = new Blob([JSON.stringify(D,null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = `pantalla-sana-${fechaCO()}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Respaldo descargado');
+}
+function importar(ev){
+  const f = ev.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try{
+      const n = JSON.parse(e.target.result);
+      if(!n || typeof n !== 'object' || !Array.isArray(n.hijos)) throw 0;
+      D = Object.assign(base(), n); guardar(); render(); toast('Respaldo restaurado');
+    }catch(err){ toast('El archivo no es un respaldo válido'); }
+  };
+  r.readAsText(f); ev.target.value = '';
+}
+function borrarTodo(){
+  if(!confirm('Se borra todo: hijos, registros y acuerdos. No hay forma de recuperarlo.')) return;
+  if(!confirm('Confirma otra vez. ¿Borrar todo?')) return;
+  Store.del(CLAVE); D = base(); render(); toast('Todo borrado');
+}
+
+/* ========== 14. Render ========== */
+function render(){
+  if(!D.activo && D.hijos.length) D.activo = D.hijos[0].id;
+  pintarChips();
+  if(vista === 'hoy') pintarHoy();
+  if(vista === 'limites') pintarLimites();
+  if(vista === 'historial') pintarHistorial();
+  if(vista === 'acuerdo') pintarAcuerdo();
+  if(vista === 'ajustes') pintarAjustes();
+  pintarCrono();
+}
+
+/* ========== 15. Arranque ========== */
+pintarNav(); render(); tick();
+setInterval(tick, 1000);
+if(!Store.persistente) setTimeout(() => toast('Sin guardado permanente en esta vista. Abre la app publicada.'), 1400);
+
+if('serviceWorker' in navigator && location.protocol === 'https:'){
+  const sw = `self.addEventListener('install',e=>self.skipWaiting());
+  self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
+  self.addEventListener('fetch',e=>{
+    if(e.request.method!=='GET')return;
+    e.respondWith(caches.open('ps-v1').then(c=>
+      fetch(e.request).then(r=>{c.put(e.request,r.clone());return r})
+      .catch(()=>c.match(e.request))));
+  });`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'}))).catch(()=>{});
+}
+
+const manifest = {
+  name:'Pantalla Sana — Acuerdo Familiar de Pantalla',
+  short_name:'Pantalla Sana',
+  description:'Acuerden el tiempo de pantalla en familia. Sin vigilancia oculta.',
+  start_url:'./', display:'standalone', orientation:'portrait',
+  background_color:'#EDF0EC', theme_color:'#0D3B44', lang:'es-CO',
+  icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D3B44'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23EF9B34' stroke-width='5'/%3E%3Cpath d='M32 21v12l8 5' stroke='%23EF9B34' stroke-width='5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E",
+    sizes:'any', type:'image/svg+xml', purpose:'any maskable'}]
+};
+const ml = document.createElement('link');
+ml.rel = 'manifest';
+ml.href = URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'}));
+document.head.appendChild(ml);
+</script>
+</body>
+</html>
